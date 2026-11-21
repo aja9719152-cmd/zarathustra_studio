@@ -33,65 +33,61 @@
     --border: #262626;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
+  html, body {
+    height: 100dvh;
+    overflow: hidden;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.95;
     transition: background 0.25s, color 0.25s;
-    padding-bottom: 135px;
-    overflow-x: hidden;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
   }
   header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    flex-shrink: 0;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 12px 20px;
+    padding: 10px 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
   .brand-area {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
   }
   .brand h1 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--accent);
   }
-  .brand p {
-    font-size: 0.78rem;
-    color: var(--subtext);
-  }
   .ep-select {
-    padding: 7px 12px;
-    border-radius: 10px;
+    padding: 6px 10px;
+    border-radius: 8px;
     border: 1.5px solid var(--accent);
     background: var(--accent-light);
     color: var(--accent);
     font-weight: 700;
-    font-size: 0.88rem;
+    font-size: 0.84rem;
     cursor: pointer;
   }
   .tabs {
     display: flex;
     gap: 6px;
-    flex-wrap: wrap;
   }
   .tab-btn {
-    padding: 7px 13px;
-    border-radius: 20px;
+    padding: 6px 12px;
+    border-radius: 18px;
     border: 1px solid var(--border);
     background: var(--bg);
     color: var(--text);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
@@ -106,16 +102,15 @@
   }
   .actions {
     display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
+    gap: 5px;
   }
   .action-btn {
-    padding: 6px 11px;
-    border-radius: 8px;
+    padding: 5px 10px;
+    border-radius: 7px;
     border: 1px solid var(--border);
     background: var(--surface);
     color: var(--text);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     cursor: pointer;
     white-space: nowrap;
   }
@@ -126,50 +121,78 @@
     font-weight: 600;
   }
   main {
-    max-width: 820px;
-    margin: 24px auto;
-    padding: 0 18px;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 12px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   .meta-bar {
+    flex-shrink: 0;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
     background: var(--accent-light);
-    padding: 10px 16px;
-    border-radius: 10px;
-    margin-bottom: 18px;
-    font-size: 0.86rem;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
     color: var(--accent);
     font-weight: 600;
   }
-  .view-controls {
+  .script-container {
+    flex: 1;
+    min-height: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 30px;
+    font-size: 21px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .script-container[contenteditable="true"] {
+    outline: 2px solid var(--accent);
+    background: var(--bg);
+    overflow-y: auto;
+  }
+  .bottom-bar {
+    flex-shrink: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
     gap: 10px;
-    flex-wrap: wrap;
   }
-  .mode-switch {
-    display: flex;
-    gap: 6px;
-  }
-  .page-nav {
+  .nav-group {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
   .page-btn {
-    padding: 8px 16px;
+    padding: 9px 18px;
     border-radius: 10px;
     border: 1px solid var(--accent);
     background: var(--accent);
     color: #fff;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
+    user-select: none;
   }
   body.prompter .page-btn { color: #000; }
   .page-btn:disabled {
@@ -177,270 +200,123 @@
     cursor: not-allowed;
   }
   .page-indicator {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-weight: 700;
     color: var(--text);
-    min-width: 74px;
+    min-width: 72px;
     text-align: center;
+    font-variant-numeric: tabular-nums;
   }
-  .script-container {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 36px 32px;
-    font-size: 21px;
-    line-height: 2.05;
-    white-space: pre-wrap;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-    min-height: 55vh;
-  }
-  .script-container[contenteditable="true"] {
-    outline: 2px solid var(--accent);
-    background: var(--bg);
-  }
-  .bottom-page-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 18px;
-    gap: 12px;
-  }
-  .bottom-page-nav .page-btn {
-    flex: 1;
-    padding: 13px;
-    font-size: 0.95rem;
-  }
-  .prompter-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 10px 14px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    z-index: 200;
-    box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
-  }
-  .control-group {
+  .tool-group {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.82rem;
+    flex-wrap: wrap;
   }
-  .play-btn {
-    padding: 8px 16px;
-    border-radius: 22px;
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.88rem;
-    cursor: pointer;
-  }
-  body.prompter .play-btn { color: #000; }
   .timer {
     font-variant-numeric: tabular-nums;
     font-weight: 700;
-    font-size: 0.92rem;
-    min-width: 52px;
+    font-size: 0.88rem;
+    min-width: 48px;
     text-align: center;
   }
-  body.focus-mode header { display: none; }
+  body.focus-mode header,
+  body.focus-mode .meta-bar {
+    display: none;
+  }
   .exit-focus {
     display: none;
     position: fixed;
-    top: 14px;
-    right: 14px;
+    top: 12px;
+    right: 12px;
     z-index: 300;
-    padding: 8px 14px;
+    padding: 7px 12px;
     border-radius: 8px;
     background: var(--accent);
     color: #fff;
     border: none;
     cursor: pointer;
+    font-size: 0.8rem;
     font-weight: 600;
   }
   body.focus-mode .exit-focus { display: block; }
 
-  /* 안내 토스트 메시지 (alert 대체용) */
-  .toast-msg {
-    position: fixed;
-    top: 76px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 999px;
-    font-size: 0.86rem;
-    font-weight: 600;
-    z-index: 400;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-  }
-  body.prompter .toast-msg { color: #000; }
-
-  /* 초기화 확인 모달 (confirm 대체용) */
-  .modal-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 500;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-  }
-  .modal-backdrop.open { display: flex; }
-  .modal-card {
-    background: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    max-width: 380px;
-    width: 100%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  }
-  .modal-card h3 {
-    font-size: 1.05rem;
-    margin-bottom: 8px;
-    color: var(--accent);
-  }
-  .modal-card p {
-    font-size: 0.9rem;
-    color: var(--subtext);
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-  .modal-btns {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-  }
-
+  /* 모바일 반응형: 스크롤 없는 한 화면 맞춤 */
   @media (max-width: 640px) {
-    body { padding-bottom: 165px; }
-    header { padding: 10px 14px; gap: 8px; }
-    .brand h1 { font-size: 1rem; }
-    .brand p { font-size: 0.72rem; }
-    .ep-select { width: 100%; }
+    header { padding: 8px 12px; gap: 6px; }
+    .brand h1 { font-size: 0.95rem; }
+    .ep-select { font-size: 0.78rem; padding: 5px 8px; flex: 1; }
     .tabs { width: 100%; justify-content: space-between; }
-    .tab-btn { flex: 1; padding: 7px 6px; font-size: 0.78rem; text-align: center; }
+    .tab-btn { flex: 1; padding: 5px 4px; font-size: 0.74rem; text-align: center; }
     .actions { width: 100%; justify-content: flex-end; }
-    main { margin: 14px auto; padding: 0 12px; }
-    .meta-bar { padding: 9px 12px; font-size: 0.8rem; margin-bottom: 12px; }
+    .action-btn { padding: 4px 8px; font-size: 0.74rem; }
+    main { padding: 8px 10px; gap: 6px; }
+    .meta-bar { padding: 6px 10px; font-size: 0.74rem; }
+    #readTime { display: none; }
     .script-container {
-      padding: 22px 16px;
-      font-size: 18px;
-      line-height: 1.95;
-      border-radius: 12px;
-      min-height: 50vh;
+      padding: 16px 14px;
+      font-size: 17px;
+      line-height: 1.8;
+      border-radius: 10px;
     }
-    .prompter-bar { padding: 8px 10px; gap: 8px; }
-    .play-btn { padding: 7px 13px; font-size: 0.82rem; }
-    input[type="range"] { width: 76px; }
+    .bottom-bar { padding: 8px 10px; gap: 6px; justify-content: center; }
+    .nav-group { width: 100%; justify-content: space-between; }
+    .page-btn { flex: 1; padding: 9px 10px; font-size: 0.86rem; }
+    .tool-group { width: 100%; justify-content: center; gap: 4px; }
   }
 </style>
 </head>
 <body>
 
 <button class="exit-focus" onclick="toggleFocus()">집중모드 해제</button>
-<div id="toastMsg" class="toast-msg">알림 메시지</div>
-
-<!-- 초기화 확인 커스텀 모달 -->
-<div id="resetModal" class="modal-backdrop">
-  <div class="modal-card">
-    <h3>원고 초기화 확인</h3>
-    <p>현재 선택한 회차/탭의 수정 내용을 지우고 처음 원고로 되돌릴까요?</p>
-    <div class="modal-btns">
-      <button class="action-btn" onclick="closeResetModal()">취소</button>
-      <button class="page-btn" onclick="confirmResetScript()">초기화하기</button>
-    </div>
-  </div>
-</div>
 
 <header>
   <div class="brand-area">
     <div class="brand">
       <h1>차라투스트라의 일상 산책</h1>
-      <p id="epSubTitle">1회차: 서문 (1~10절) · 유튜브 낭독 & 집필 스튜디오</p>
     </div>
     <select class="ep-select" id="epSelect" onchange="switchEpisode(this.value)">
       <option value="ep1">1회차 · 서문 (1~10절)</option>
       <option value="ep2">2회차 · 제1부 1장~5장</option>
       <option value="ep3">3회차 · 제1부 6장~10장</option>
       <option value="ep4">4회차 · 제1부 11장~16장</option>
-      <option value="ep5">5회차 · 제1부 17장~22장 (제1부 완결)</option>
+      <option value="ep5">5회차 · 제1부 17장~22장 (완결)</option>
     </select>
   </div>
 
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('raw', this)">① 원문 낭독 (글만)</button>
-    <button class="tab-btn" onclick="switchTab('broadcast', this)">② 방송용 대본 (30분)</button>
-    <button class="tab-btn" onclick="switchTab('shorts', this)">③ 숏츠 대본 (1분)</button>
+    <button class="tab-btn active" onclick="switchTab('raw', this)">① 원문 낭독</button>
+    <button class="tab-btn" onclick="switchTab('broadcast', this)">② 방송용 대본</button>
+    <button class="tab-btn" onclick="switchTab('shorts', this)">③ 숏츠 1분</button>
   </div>
 
   <div class="actions">
     <button class="action-btn" id="editBtn" onclick="toggleEdit()">✏️ 직접 수정</button>
-    <button class="action-btn" onclick="openResetModal()">↺ 초기화</button>
+    <button class="action-btn" onclick="resetScript()">↺ 초기화</button>
     <button class="action-btn" onclick="downloadTxt()">💾 .txt 저장</button>
   </div>
 </header>
 
 <main>
   <div class="meta-bar">
-    <span id="trackTitle">트랙 ① 원문 낭독 (해설 없이 순수 본문 전체)</span>
+    <span id="trackTitle">1회차 트랙 ① 원문 낭독</span>
     <span id="readTime">예상 낭독 시간: 약 25~30분</span>
   </div>
-
-  <div class="view-controls">
-    <div class="mode-switch">
-      <button class="action-btn active-mode" id="btnPageMode" onclick="setViewMode('page')">📖 페이지 단위 보기</button>
-      <button class="action-btn" id="btnScrollMode" onclick="setViewMode('scroll')">📜 전체 스크롤 보기</button>
-    </div>
-
-    <div class="page-nav" id="topPageNav">
-      <button class="page-btn" id="prevTopBtn" onclick="changePage(-1)">◀ 이전</button>
-      <span class="page-indicator" id="pageIndicator">1 / 10</span>
-      <button class="page-btn" id="nextTopBtn" onclick="changePage(1)">다음 ▶</button>
-    </div>
-  </div>
-
   <div id="scriptBox" class="script-container"></div>
-
-  <div class="bottom-page-nav" id="bottomPageNav">
-    <button class="page-btn" id="prevBotBtn" onclick="changePage(-1)">◀ 이전 페이지</button>
-    <button class="page-btn" id="nextBotBtn" onclick="changePage(1)">다음 페이지 ▶</button>
-  </div>
 </main>
 
-<div class="prompter-bar" id="prompterBar">
-  <button class="play-btn" id="scrollBtn" onclick="toggleScroll()">▶ 자동 스크롤</button>
-  <div class="control-group" id="speedGroup">
-    <label>속도</label>
-    <input type="range" id="speedRange" min="1" max="10" value="2">
-    <span id="speedVal">2</span>
+<div class="bottom-bar">
+  <div class="nav-group">
+    <button class="page-btn" id="prevBtn" onclick="changePage(-1)">◀ 이전</button>
+    <span class="page-indicator" id="pageIndicator">1 / 1</span>
+    <button class="page-btn" id="nextBtn" onclick="changePage(1)">다음 ▶</button>
   </div>
-  <div class="control-group">
-    <span>⏱</span>
-    <span class="timer" id="timerDisplay">00:00</span>
+
+  <div class="tool-group">
+    <button class="action-btn" id="timerBtn" onclick="toggleTimer()">⏱ <span id="timerDisplay">00:00</span></button>
     <button class="action-btn" onclick="resetTimer()">리셋</button>
-  </div>
-  <div class="control-group">
     <button class="action-btn" onclick="changeFont(-2)">가-</button>
     <button class="action-btn" onclick="changeFont(2)">가+</button>
-  </div>
-  <div class="control-group">
     <button class="action-btn" onclick="setTheme('')">미색</button>
     <button class="action-btn" onclick="setTheme('dark')">심야</button>
     <button class="action-btn" onclick="setTheme('prompter')">프롬프터</button>
@@ -449,8 +325,6 @@
 </div>
 
 <script>
-const PAGE_SEP = '\n---PAGE---\n';
-
 const episodesData = {
   ep1: {
     subTitle: '1회차: 서문 (1~10절) · 유튜브 낭독 & 집필 스튜디오',
@@ -1061,7 +935,6 @@ const episodesData = {
 오늘도 크고 작은 실수는 많더라도, 내 삶을 포기하는 실패만은 없는 하루가 되었으면 합니다. 고맙습니다.`
     }
   },
-
   ep3: {
     subTitle: '3회차: 제1부 6장~10장 (창백한 범죄자 ~ 전쟁과 전사) · 유튜브 낭독 & 집필 스튜디오',
     meta: {
@@ -1326,7 +1199,6 @@ const episodesData = {
 오늘도 크고 작은 실수는 많더라도, 내 삶을 포기하는 실패만은 없는 하루가 되었으면 합니다. 고맙습니다.`
     }
   },
-
   ep4: {
     subTitle: '4회차: 제1부 11장~16장 (새로운 우상 ~ 이웃 사랑) · 유튜브 낭독 & 집필 스튜디오',
     meta: {
@@ -1649,7 +1521,6 @@ const episodesData = {
 오늘도 크고 작은 실수는 많더라도, 내 삶을 포기하는 실패만은 없는 하루가 되었으면 합니다. 고맙습니다.`
     }
   },
-
   ep5: {
     subTitle: '5회차: 제1부 17장~22장 (창조자의 길 ~ 베푸는 덕) · 유튜브 낭독 & 집필 스튜디오',
     meta: {
@@ -2021,118 +1892,161 @@ const episodesData = {
 오늘도 크고 작은 실수는 많더라도, 내 삶을 포기하는 실패만은 없는 하루가 되었으면 합니다. 고맙습니다.`
     }
   }
+
 };
 
 let currentEp = 'ep1';
 let currentTab = 'raw';
-let viewMode = 'page';
 let currentPage = 0;
-let pages = [];
+let autoPages = [];
 let isEditing = false;
-let scrollInterval = null;
-let scrollAccumulator = 0;
 let timerInterval = null;
 let seconds = 0;
-let fontSize = window.innerWidth <= 640 ? 18 : 21;
-
-function showToast(msg) {
-  const t = document.getElementById('toastMsg');
-  t.innerText = msg;
-  t.style.opacity = '1';
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => {
-    t.style.opacity = '0';
-  }, 2400);
-}
+let fontSize = window.innerWidth <= 640 ? 17 : 21;
 
 function getStorageKey() {
-  return `zarathustra_part1_v1_${currentEp}_${currentTab}`;
+  return `zarathustra_fit_${currentEp}_${currentTab}`;
 }
 
 function getFullText() {
-  try {
-    const saved = localStorage.getItem(getStorageKey());
-    return saved ? saved : episodesData[currentEp].scripts[currentTab];
-  } catch (e) {
-    return episodesData[currentEp].scripts[currentTab];
-  }
+  const saved = localStorage.getItem(getStorageKey());
+  const raw = saved ? saved : episodesData[currentEp].scripts[currentTab];
+  return raw.replace(/\n---PAGE---\n/g, '\n\n');
 }
 
-function renderContent() {
+// 현재 화면 높이와 글자 크기에 맞춰 스크롤 없이 한 화면에 들어가는 페이지 단위로 자동 분할
+function paginateText(fullText) {
+  const box = document.getElementById('scriptBox');
+  const style = window.getComputedStyle(box);
+  const padTop = parseFloat(style.paddingTop) || 20;
+  const padBot = parseFloat(style.paddingBottom) || 20;
+  const padLeft = parseFloat(style.paddingLeft) || 20;
+  const padRight = parseFloat(style.paddingRight) || 20;
+
+  const availHeight = box.clientHeight - padTop - padBot - 6;
+  const availWidth = box.clientWidth - padLeft - padRight;
+
+  if (availHeight <= 40 || availWidth <= 40) {
+    return [fullText];
+  }
+
+  const measurer = document.createElement('div');
+  measurer.style.position = 'fixed';
+  measurer.style.visibility = 'hidden';
+  measurer.style.pointerEvents = 'none';
+  measurer.style.left = '-9999px';
+  measurer.style.top = '0';
+  measurer.style.width = availWidth + 'px';
+  measurer.style.fontFamily = style.fontFamily;
+  measurer.style.fontSize = fontSize + 'px';
+  measurer.style.lineHeight = style.lineHeight;
+  measurer.style.whiteSpace = 'pre-wrap';
+  measurer.style.wordBreak = 'keep-all';
+  measurer.style.overflowWrap = 'break-word';
+  document.body.appendChild(measurer);
+
+  const paragraphs = fullText.split('\n');
+  const resultPages = [];
+  let currentChunk = [];
+
+  for (let i = 0; i < paragraphs.length; i++) {
+    const p = paragraphs[i];
+    const testLines = currentChunk.concat(p);
+    measurer.innerText = testLines.join('\n');
+
+    if (measurer.offsetHeight <= availHeight) {
+      currentChunk.push(p);
+    } else {
+      if (currentChunk.length > 0) {
+        resultPages.push(currentChunk.join('\n').trim());
+        currentChunk = [];
+      }
+      // 단일 문단이 한 화면보다 클 경우 문장/어절 단위로 추가 분할
+      measurer.innerText = p;
+      if (measurer.offsetHeight <= availHeight) {
+        currentChunk.push(p);
+      } else {
+        const words = p.split(' ');
+        let subLine = '';
+        for (let w = 0; w < words.length; w++) {
+          const candidate = subLine ? subLine + ' ' + words[w] : words[w];
+          measurer.innerText = candidate;
+          if (measurer.offsetHeight <= availHeight) {
+            subLine = candidate;
+          } else {
+            if (subLine) resultPages.push(subLine.trim());
+            subLine = words[w];
+          }
+        }
+        if (subLine) currentChunk.push(subLine);
+      }
+    }
+  }
+
+  if (currentChunk.length > 0) {
+    const last = currentChunk.join('\n').trim();
+    if (last) resultPages.push(last);
+  }
+
+  document.body.removeChild(measurer);
+  return resultPages.length > 0 ? resultPages : [fullText];
+}
+
+function renderContent(keepRatio = false) {
   const ep = episodesData[currentEp];
-  document.getElementById('epSubTitle').innerText = ep.subTitle;
   document.getElementById('trackTitle').innerText = ep.meta[currentTab].title;
   document.getElementById('readTime').innerText = ep.meta[currentTab].time;
 
+  const box = document.getElementById('scriptBox');
+  box.style.fontSize = fontSize + 'px';
+
   const fullText = getFullText();
-  pages = fullText.split(PAGE_SEP);
-  if (currentPage >= pages.length) currentPage = pages.length - 1;
+  if (isEditing) {
+    box.innerText = fullText;
+    document.getElementById('pageIndicator').innerText = '편집 중';
+    document.getElementById('prevBtn').disabled = true;
+    document.getElementById('nextBtn').disabled = true;
+    return;
+  }
+
+  const prevRatio = autoPages.length > 1 ? currentPage / (autoPages.length - 1) : 0;
+  autoPages = paginateText(fullText);
+
+  if (keepRatio && autoPages.length > 1) {
+    currentPage = Math.round(prevRatio * (autoPages.length - 1));
+  }
+  if (currentPage >= autoPages.length) currentPage = autoPages.length - 1;
   if (currentPage < 0) currentPage = 0;
 
-  const box = document.getElementById('scriptBox');
-  const topNav = document.getElementById('topPageNav');
-  const botNav = document.getElementById('bottomPageNav');
-  const scrollBtn = document.getElementById('scrollBtn');
-  const speedGroup = document.getElementById('speedGroup');
-
-  if (viewMode === 'page' && pages.length > 1) {
-    box.innerText = pages[currentPage].trim();
-    topNav.style.display = 'flex';
-    botNav.style.display = 'flex';
-    document.getElementById('pageIndicator').innerText = `${currentPage + 1} / ${pages.length}`;
-    document.getElementById('prevTopBtn').disabled = currentPage === 0;
-    document.getElementById('prevBotBtn').disabled = currentPage === 0;
-    document.getElementById('nextTopBtn').disabled = currentPage === pages.length - 1;
-    document.getElementById('nextBotBtn').disabled = currentPage === pages.length - 1;
-    scrollBtn.style.display = 'none';
-    speedGroup.style.display = 'none';
-  } else {
-    box.innerText = fullText.split(PAGE_SEP).join('\n\n────────────────────\n\n');
-    topNav.style.display = 'none';
-    botNav.style.display = 'none';
-    scrollBtn.style.display = 'inline-block';
-    speedGroup.style.display = 'flex';
-  }
+  box.innerText = autoPages[currentPage];
+  document.getElementById('pageIndicator').innerText = `${currentPage + 1} / ${autoPages.length}`;
+  document.getElementById('prevBtn').disabled = currentPage === 0;
+  document.getElementById('nextBtn').disabled = currentPage === autoPages.length - 1;
 }
 
 function switchEpisode(epKey) {
   if (isEditing) toggleEdit();
-  if (scrollInterval) toggleScroll();
   currentEp = epKey;
   currentPage = 0;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  renderContent();
-}
-
-function setViewMode(mode) {
-  if (isEditing) toggleEdit();
-  if (scrollInterval) toggleScroll();
-  viewMode = mode;
-  document.getElementById('btnPageMode').classList.toggle('active-mode', mode === 'page');
-  document.getElementById('btnScrollMode').classList.toggle('active-mode', mode === 'scroll');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  renderContent();
-}
-
-function changePage(delta) {
-  if (isEditing) toggleEdit();
-  const next = currentPage + delta;
-  if (next >= 0 && next < pages.length) {
-    currentPage = next;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    renderContent();
-  }
+  renderContent(false);
 }
 
 function switchTab(tab, btn) {
   if (isEditing) toggleEdit();
-  if (scrollInterval) toggleScroll();
   currentTab = tab;
   currentPage = 0;
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  renderContent();
+  renderContent(false);
+}
+
+function changePage(delta) {
+  if (isEditing) return;
+  const next = currentPage + delta;
+  if (next >= 0 && next < autoPages.length) {
+    currentPage = next;
+    renderContent(false);
+  }
 }
 
 function toggleEdit() {
@@ -2142,78 +2056,39 @@ function toggleEdit() {
   box.contentEditable = isEditing;
 
   if (isEditing) {
-    if (scrollInterval) toggleScroll();
     btn.innerText = '✅ 수정 완료';
+    renderContent(false);
     box.focus();
-    showToast('수정 모드입니다. 문장을 고친 뒤 [수정 완료]를 눌러주세요.');
   } else {
-    try {
-      if (viewMode === 'page' && pages.length > 1) {
-        pages[currentPage] = box.innerText.trim();
-        localStorage.setItem(getStorageKey(), pages.join(PAGE_SEP));
-      } else {
-        const cleaned = box.innerText.split('\n\n────────────────────\n\n').join(PAGE_SEP);
-        localStorage.setItem(getStorageKey(), cleaned);
-      }
-      showToast('수정한 원고가 저장되었습니다.');
-    } catch (e) {
-      showToast('수정 내용이 반영되었습니다.');
-    }
+    localStorage.setItem(getStorageKey(), box.innerText.trim());
     btn.innerText = '✏️ 직접 수정';
-    renderContent();
+    currentPage = 0;
+    renderContent(false);
   }
 }
 
-function openResetModal() {
-  document.getElementById('resetModal').classList.add('open');
-}
-
-function closeResetModal() {
-  document.getElementById('resetModal').classList.remove('open');
-}
-
-function confirmResetScript() {
-  try {
+function resetScript() {
+  if (confirm('현재 선택한 회차/탭의 수정 내용을 초기 원고로 되돌릴까요?')) {
     localStorage.removeItem(getStorageKey());
-  } catch (e) {}
-  currentPage = 0;
-  closeResetModal();
-  renderContent();
-  showToast('초기 원고로 복원되었습니다.');
+    currentPage = 0;
+    renderContent(false);
+  }
 }
 
 function downloadTxt() {
-  const text = getFullText().split(PAGE_SEP).join('\n\n');
+  const text = getFullText();
   const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = `차라투스트라_${currentEp}_${currentTab}.txt`;
   a.click();
-  showToast('텍스트 파일(.txt)이 저장되었습니다.');
 }
 
-function toggleScroll() {
-  const btn = document.getElementById('scrollBtn');
-  if (scrollInterval) {
-    clearInterval(scrollInterval);
-    scrollInterval = null;
+function toggleTimer() {
+  if (timerInterval) {
     clearInterval(timerInterval);
     timerInterval = null;
-    btn.innerText = '▶ 자동 스크롤';
   } else {
-    if (isEditing) toggleEdit();
-    btn.innerText = '⏸ 일시정지';
-    scrollAccumulator = 0;
-    scrollInterval = setInterval(() => {
-      const speed = Number(document.getElementById('speedRange').value);
-      const step = speed * 0.25;
-      scrollAccumulator += step;
-      if (scrollAccumulator >= 1) {
-        const move = Math.floor(scrollAccumulator);
-        window.scrollBy(0, move);
-        scrollAccumulator -= move;
-      }
-    }, 40);
     timerInterval = setInterval(() => {
       seconds++;
       const m = String(Math.floor(seconds / 60)).padStart(2, '0');
@@ -2228,13 +2103,9 @@ function resetTimer() {
   document.getElementById('timerDisplay').innerText = '00:00';
 }
 
-document.getElementById('speedRange').addEventListener('input', (e) => {
-  document.getElementById('speedVal').innerText = e.target.value;
-});
-
 function changeFont(delta) {
-  fontSize = Math.max(14, Math.min(36, fontSize + delta));
-  document.getElementById('scriptBox').style.fontSize = fontSize + 'px';
+  fontSize = Math.max(14, Math.min(34, fontSize + delta));
+  renderContent(true);
 }
 
 function setTheme(theme) {
@@ -2244,23 +2115,46 @@ function setTheme(theme) {
 
 function toggleFocus() {
   document.body.classList.toggle('focus-mode');
+  setTimeout(() => renderContent(true), 50);
 }
 
+// 키보드 좌우 화살표 & 스페이스바 지원
 document.addEventListener('keydown', (e) => {
-  if (isEditing || document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') return;
-  if (e.code === 'Space' && viewMode === 'scroll') {
+  if (isEditing || document.activeElement.tagName === 'SELECT') return;
+  if (e.code === 'ArrowRight' || e.code === 'Space') {
     e.preventDefault();
-    toggleScroll();
-  } else if (e.code === 'ArrowRight' && viewMode === 'page') {
     changePage(1);
-  } else if (e.code === 'ArrowLeft' && viewMode === 'page') {
+  } else if (e.code === 'ArrowLeft') {
+    e.preventDefault();
     changePage(-1);
   }
 });
 
-window.onload = function () {
-  renderContent();
-};
+// 모바일 좌우 스와이프 터치 지원
+let touchStartX = 0;
+let touchStartY = 0;
+document.getElementById('scriptBox').addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.getElementById('scriptBox').addEventListener('touchend', (e) => {
+  if (isEditing) return;
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  const dy = e.changedTouches[0].screenY - touchStartY;
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+    if (dx < 0) changePage(1);
+    else changePage(-1);
+  }
+}, { passive: true });
+
+// 창 크기 변경 및 모바일 회전 시 한 화면 맞춤 재계산
+window.addEventListener('resize', () => {
+  if (!isEditing) renderContent(true);
+});
+
+window.addEventListener('load', () => renderContent(false));
+renderContent(false);
 </script>
 </body>
 </html>
